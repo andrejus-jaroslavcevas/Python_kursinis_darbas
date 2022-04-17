@@ -6,9 +6,12 @@ langas = Tk()
 langas.title('Duomenu baze')
 langas.geometry("400x600")
 
-conn = sqlite3.connect('zaideju_sarasas.db')
+# Duomenų bazės sukūrimas
 
+conn = sqlite3.connect('zaideju_sarasas.db')
 c = conn.cursor()
+
+# Lentelės sukūrimas
 
 c.execute("""CREATE TABLE IF NOT EXISTS komanda (
         vardas text,
@@ -18,6 +21,7 @@ c.execute("""CREATE TABLE IF NOT EXISTS komanda (
         komanda text
         )""")
 
+# Sukuriama funkcija duomenų įvedimui į duomenų bazę
 
 def ivesti():
     conn = sqlite3.connect('zaideju_sarasas.db')
@@ -33,6 +37,8 @@ def ivesti():
 
     conn.commit()
     conn.close()
+
+    # Įvedus duomenus, jie automatiškai išsivalo iš laukelio ir galima įvesti kitus duomenis
 
     vardas.delete(0, END)
     pavarde.delete(0, END)
@@ -144,6 +150,7 @@ def redaguoti():
     mygtukas3 = Button(redagavimas, text="Išsaugoti įrašą", command=atnaujinti)
     mygtukas3.grid(row=5, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
+# Text boxes
 
 vardas = Entry(langas, width=30)
 vardas.grid(row=0, column=1, padx=20, pady=(10, 0))
@@ -158,6 +165,8 @@ komanda.grid(row=4, column=1, pady=5)
 istrinimas = Entry(langas, width=30)
 istrinimas.grid(row=9, column=1)
 
+# Text boxes labels
+
 vardas_label = Label(langas, text="Vardas")
 vardas_label.grid(row=0, column=0, pady=(10, 0))
 pavarde_label = Label(langas, text="Pavardė")
@@ -170,6 +179,8 @@ komanda_label = Label(langas, text="Komanda")
 komanda_label.grid(row=4, column=0)
 istrinti_label = Label(langas, text="Pasirinkti ID")
 istrinti_label.grid(row=9, column=0, pady=5)
+
+# Sukuriami mygtukai
 
 mygtukas = Button(langas, text="Įvesti", command=ivesti)
 mygtukas.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
