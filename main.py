@@ -1,6 +1,5 @@
 from tkinter import *
 import sqlite3
-import csv
 
 langas = Tk()
 langas.title('Duomenu baze')
@@ -54,12 +53,8 @@ def sarasas():
     rodyti_irasus = Label(langas, text=rodyti_sarasa)
     rodyti_irasus.grid(row=12, column=0, columnspan=2)
 
-    csv_mygtukas = Button(langas, text="Issaugoti i csv", command=lambda: irasyti_i_csv(irasai))
-    csv_mygtukas.grid(row=index+1, column=0)
-
     conn.commit()
     conn.close()
-
 
 def istrinti():
     conn = sqlite3.connect('zaideju_sarasas.db')
@@ -128,11 +123,11 @@ def redaguoti():
 
     vardas_label = Label(redagavimas, text="Vardas")
     vardas_label.grid(row=0, column=0, pady=(10, 0))
-    pavarde_label = Label(redagavimas, text="Pavarde")
+    pavarde_label = Label(redagavimas, text="Pavardė")
     pavarde_label.grid(row=1, column=0)
     pozicija_label = Label(redagavimas, text="Pozicija")
     pozicija_label.grid(row=2, column=0)
-    amzius_label = Label(redagavimas, text="Amzius")
+    amzius_label = Label(redagavimas, text="Amžius")
     amzius_label.grid(row=3, column=0)
     komanda_label = Label(redagavimas, text="Komanda")
     komanda_label.grid(row=4, column=0)
@@ -144,7 +139,7 @@ def redaguoti():
         amzius_redagavimas.insert(0, irasas[3])
         komanda_redagavimas.insert(0, irasas[4])
 
-    mygtukas3 = Button(redagavimas, text="Issaugoti irasa", command=atnaujinti)
+    mygtukas3 = Button(redagavimas, text="Išsaugoti įrašą", command=atnaujinti)
     mygtukas3.grid(row=5, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 
@@ -163,27 +158,27 @@ istrinimas.grid(row=9, column=1)
 
 vardas_label = Label(langas, text="Vardas")
 vardas_label.grid(row=0, column=0, pady=(10, 0))
-pavarde_label = Label(langas, text="Pavarde")
+pavarde_label = Label(langas, text="Pavardė")
 pavarde_label.grid(row=1, column=0)
 pozicija_label = Label(langas, text="Pozicija")
 pozicija_label.grid(row=2, column=0)
-amzius_label = Label(langas, text="Amzius")
+amzius_label = Label(langas, text="Amžius")
 amzius_label.grid(row=3, column=0)
 komanda_label = Label(langas, text="Komanda")
 komanda_label.grid(row=4, column=0)
 istrinti_label = Label(langas, text="Pasirinkti ID")
 istrinti_label.grid(row=9, column=0, pady=5)
 
-mygtukas = Button(langas, text="Ivesti", command=ivesti)
+mygtukas = Button(langas, text="Įvesti", command=ivesti)
 mygtukas.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
-mygtukas1 = Button(langas, text="Rodyti sarasa", command=sarasas)
+mygtukas1 = Button(langas, text="Rodyti sąrasą", command=sarasas)
 mygtukas1.grid(row=7, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
-mygtukas2 = Button(langas, text="Istrinti irasa", command=istrinti)
+mygtukas2 = Button(langas, text="Ištrinti įrasą", command=istrinti)
 mygtukas2.grid(row=10, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
-mygtukas3 = Button(langas, text="Redaguoti irasa", command=redaguoti)
+mygtukas3 = Button(langas, text="Redaguoti įrašą", command=redaguoti)
 mygtukas3.grid(row=11, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 conn.commit()
