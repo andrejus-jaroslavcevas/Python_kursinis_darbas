@@ -1,3 +1,4 @@
+
 from tkinter import *
 import sqlite3
 
@@ -55,6 +56,7 @@ def sarasas():
 
     conn.commit()
     conn.close()
+
 
 def istrinti():
     conn = sqlite3.connect('zaideju_sarasas.db')
