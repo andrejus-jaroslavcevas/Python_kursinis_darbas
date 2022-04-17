@@ -1,9 +1,10 @@
-
+from csv import *
 from tkinter import *
+from tkinter import messagebox
 import sqlite3
 
 langas = Tk()
-langas.title('Duomenu baze')
+langas.title('Duomenų bazė')
 langas.geometry("400x600")
 
 # Duomenų bazės sukūrimas
@@ -34,6 +35,7 @@ def ivesti():
                   'amzius': amzius.get(),
                   'komanda': komanda.get()
               })
+    messagebox.showinfo("Informacija", "Duomenys įvesti sėkmingai")
 
     conn.commit()
     conn.close()
@@ -63,15 +65,15 @@ def sarasas():
     conn.commit()
     conn.close()
 
-
 def istrinti():
     conn = sqlite3.connect('zaideju_sarasas.db')
     c = conn.cursor()
     c.execute("DELETE from komanda WHERE oid = " + istrinimas.get())
     istrinimas.delete(0, END)
+    messagebox.showinfo("Informacija", "Duomenys ištrinti sėkmingai")
+
     conn.commit()
     conn.close()
-
 
 def atnaujinti():
     conn = sqlite3.connect('zaideju_sarasas.db')
@@ -94,11 +96,13 @@ def atnaujinti():
                'komanda': komanda_redagavimas.get(),
                'oid': iraso_id
                })
+
+    messagebox.showinfo("Informacija", "Duomenys atnaujinti sėkmingai")
+
     conn.commit()
     conn.close()
 
     redagavimas.destroy()
-
 
 def redaguoti():
     global redagavimas
