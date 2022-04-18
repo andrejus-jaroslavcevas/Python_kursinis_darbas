@@ -1,4 +1,5 @@
-from csv import *
+import csv
+import os
 from tkinter import *
 from tkinter import messagebox
 import sqlite3
@@ -25,8 +26,7 @@ c.execute("""CREATE TABLE IF NOT EXISTS komanda (
 # Sukuriama funkcija duomenų įvedimui į duomenų bazę
 
 def ivesti():
-    conn = sqlite3.connect('zaideju_sarasas.db')
-    c = conn.cursor()
+    c
     c.execute("INSERT INTO komanda VALUES(:vardas, :pavarde, :pozicija, :amzius, :komanda)",
               {
                   'vardas': vardas.get(),
@@ -48,7 +48,6 @@ def ivesti():
     amzius.delete(0, END)
     komanda.delete(0, END)
 
-
 def sarasas():
     conn = sqlite3.connect('zaideju_sarasas.db')
     c = conn.cursor()
@@ -64,6 +63,15 @@ def sarasas():
 
     conn.commit()
     conn.close()
+
+def eksportuoti():
+    conn = sqlite3.connect('zaideju_sarasas.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM komanda")
+    with open("duomenys.csv", "w") as csv_failas:
+        csv_writer = csv.writer(csv_failas, delimiter="\t")
+        csv_writer.writerow([i[0] for i in c.description])
+        csv_writer.writerows(c)
 
 def istrinti():
     conn = sqlite3.connect('zaideju_sarasas.db')
@@ -197,6 +205,9 @@ mygtukas2.grid(row=10, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 mygtukas3 = Button(langas, text="Redaguoti įrašą", command=redaguoti)
 mygtukas3.grid(row=11, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+
+mygtukas4 = Button(langas, text="Eksportuoti į CSV", command=eksportuoti)
+mygtukas4.grid(row=13, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 conn.commit()
 conn.close()
