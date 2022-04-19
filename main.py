@@ -25,7 +25,8 @@ c.execute("""CREATE TABLE IF NOT EXISTS komanda (
 # Sukuriama funkcija duomenų įvedimui į duomenų bazę
 
 def ivesti():
-    c
+    conn = sqlite3.connect('zaideju_sarasas.db')
+    c = conn.cursor()
     c.execute("INSERT INTO komanda VALUES(:vardas, :pavarde, :pozicija, :amzius, :komanda)",
               {
                   'vardas': vardas.get(),
@@ -64,9 +65,10 @@ def sarasas():
     conn.close()
 
 def eksportuoti():
-    conn = sqlite3.connect('zaideju_sarasas.db', isolation_level=None, detect_types=sqlite3.PARSE_COLNAMES)
-    db_df = pd.read_sql_query("SELECT * FROM komanda", conn)
-    db_df.to_csv('duomenys.csv', encoding='UTF-8', index=False)
+    conn = sqlite3.connect('zaideju_sarasas.db')
+    df = pd.read_sql_query("SELECT * FROM komanda", conn)
+    df.to_csv('duomenys.csv', encoding="UTF-8", index=False)
+    messagebox.showinfo("Informacija", "Duomenys eksportuoti sėkmingai")
 
 def istrinti():
     conn = sqlite3.connect('zaideju_sarasas.db')
