@@ -83,7 +83,6 @@ def istrinti():
 def atnaujinti():
     conn = sqlite3.connect('zaideju_sarasas.db')
     c = conn.cursor()
-
     iraso_id = istrinimas.get()
 
     c.execute("""UPDATE komanda SET
@@ -191,20 +190,20 @@ istrinti_label.grid(row=9, column=0, pady=5)
 
 # Sukuriami mygtukai
 
-mygtukas = Button(langas, text="Įvesti", command=ivesti)
-mygtukas.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+duomenu_ivedimo_mygtukas = Button(langas, text="Įvesti", command=ivesti)
+duomenu_ivedimo_mygtukas.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
-mygtukas1 = Button(langas, text="Rodyti sąrasą", command=sarasas)
-mygtukas1.grid(row=7, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+saraso_mytgukas = Button(langas, text="Rodyti sąrasą", command=sarasas)
+saraso_mytgukas.grid(row=7, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
-mygtukas2 = Button(langas, text="Ištrinti įrasą", command=istrinti)
-mygtukas2.grid(row=10, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+istrinimo_mygtukas = Button(langas, text="Ištrinti įrasą", command=istrinti)
+istrinimo_mygtukas.grid(row=10, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
-mygtukas3 = Button(langas, text="Redaguoti įrašą", command=redaguoti)
-mygtukas3.grid(row=11, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+redagavimo_mygtukas = Button(langas, text="Redaguoti įrašą", command=redaguoti)
+redagavimo_mygtukas.grid(row=11, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
-mygtukas4 = Button(langas, text="Eksportuoti į CSV", command=eksportuoti)
-mygtukas4.grid(row=13, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+eksportavimo_mygtukas = Button(langas, text="Eksportuoti į CSV", command=eksportuoti)
+eksportavimo_mygtukas.grid(row=13, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 conn.commit()
 conn.close()
