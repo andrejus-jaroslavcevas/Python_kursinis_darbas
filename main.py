@@ -155,8 +155,8 @@ def redaguoti():
         amzius_redagavimas.insert(0, irasas[3])
         komanda_redagavimas.insert(0, irasas[4])
 
-    mygtukas3 = Button(redagavimas, text="Išsaugoti įrašą", command=atnaujinti)
-    mygtukas3.grid(row=5, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+    atnaujinimo_mygtukas = Button(redagavimas, text="Išsaugoti įrašą", command=atnaujinti)
+    atnaujinimo_mygtukas.grid(row=5, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
 # Text boxes
 
